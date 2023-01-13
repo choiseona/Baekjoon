@@ -21,7 +21,7 @@ int main() {
 	dp[0] = arr[0];
 	//dp[1] = max(dp[0] + arr[1], arr[1]);
 	//dp[2] = max(arr[0] + arr[1] + arr[2], arr[1] + arr[2], arr[2]);
-	//dp[4] = max(arr[0] + arr[1] + arr[2] + arr[3], arr[1] + arr[2] + arr[3], arr[2] + arr[3], arr[3]);
+	//dp[3] = max(arr[0] + arr[1] + arr[2] + arr[3], arr[1] + arr[2] + arr[3], arr[2] + arr[3], arr[3]);
 	//dp[i] = max(dp[i - 1] + arr[i], arr[i]);
 
 	//각 단계에서의 최대값을 dp배열에 저장
