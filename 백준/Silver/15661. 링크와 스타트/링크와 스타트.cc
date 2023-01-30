@@ -9,9 +9,11 @@ int sumA, sumB;
 int minval = 1000000;
 
 int main() {
-	cin >> N;
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-	
+	cin >> N;
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
 			cin >> status[i][j];
