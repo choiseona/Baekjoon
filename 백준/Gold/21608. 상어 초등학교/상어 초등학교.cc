@@ -36,7 +36,7 @@ int main() {
 		vector <pair<int, int>> candidate1;
 		vector <pair<int, int>> candidate2;
 
-		int max_nei_cnt = -1;
+		int max_nei_cnt = 0;
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < N; c++) {
 				//빈 자리가 아니면 pass
@@ -44,7 +44,7 @@ int main() {
 					continue;
 
 				//빈 자리면 1번 조건 확인
-				int nei_cnt = -1;
+				int nei_cnt = 0;
 				for (int l = 0; l < 4; l++) {
 					int new_r = r + dir_r[l];
 					int new_c = c + dir_c[l];
@@ -68,13 +68,13 @@ int main() {
 			}
 		}
 		//2번 조건 확인 
-		int max_empty_cnt = -1;
+		int max_empty_cnt = 0;
 		for (int j = 0; j < candidate1.size(); j++) {
 			int r = candidate1[j].first;
 			int c = candidate1[j].second;
 
 			//비어있는 주변 칸이 가장 많은 칸 구하기
-			int empty_cnt = -1;
+			int empty_cnt = 0;
 			for (int k = 0; k < 4; k++) {
 				int new_r = r + dir_r[k];
 				int new_c = c + dir_c[k];
