@@ -9,3 +9,7 @@ string solution(int n){
         return "Odd";
     }
 }
+
+/*
+return num & 1 ? "Odd" : "Even";
+*/
