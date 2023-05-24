@@ -5,25 +5,16 @@ using namespace std;
 
 bool solution(string s)
 {
-    bool answer = true;
-    int open = 0;
-    int close = 0;
+    int n = 0;
     
     for(int i=0;i<s.size();i++){
+        if(n < 0) return false;
+        
         if(s[i]=='(')
-            open ++;
+            n++;
         else
-            close++;
-        
-        if(close > open){
-            answer=false;
-            break;
-        }
-        
-        if((i == s.size()-1) && (open != close))
-            answer=false;
-           
+            n--;
     }
 
-    return answer;
+    return n==0;
 }
