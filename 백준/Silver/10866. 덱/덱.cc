@@ -9,6 +9,9 @@ int main() {
 	deque <int> dq;
 
 	while (N--) {
+		ios::sync_with_stdio(0);
+		cin.tie(0);
+
 		string oper;
 		cin >> oper;
 
