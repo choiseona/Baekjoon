@@ -36,7 +36,6 @@ int main() {
 	for (int i = 1; i <= N; i++) {
 		if (!dq.empty() && (i - (dq.front().first)) % L == 0) dq.pop_front();
 		while (!dq.empty() && (dq.back().second > A[i])) dq.pop_back();
-		//if (!dq.empty() && ((2 * i + 1) % L) ) dq.pop_front();
 		dq.push_back({ i,A[i] });
 
 		cout << dq.front().second << " ";
