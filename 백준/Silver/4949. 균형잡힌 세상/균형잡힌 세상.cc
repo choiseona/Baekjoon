@@ -6,6 +6,9 @@ using namespace std;
 
 int main() {
 	while (true) {
+		ios::sync_with_stdio(0);
+		cin.tie(0);
+
 		string S;
 		stack <char> st;
 		string result = "";
