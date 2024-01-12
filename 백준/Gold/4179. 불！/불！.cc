@@ -16,8 +16,6 @@ queue<pair<int, int>> jihunQ;
 int dx[] = { 0,0,-1,1 };
 int dy[] = { -1,1,0,0 };
 
-int result = 999999999;
-
 void fireBfs() {
 	while (!fireQ.empty()) {
 		int fireX = fireQ.front().first;
@@ -54,6 +52,38 @@ void jihunBfs() {
 			jihunDist[newjihunX][newjihunY] = jihunDist[jihunX][jihunY] + 1;
 		}
 	}
+}
+
+int solveResult() {
+	int result = 999999999;
+
+	for (int i = 0; i < R; i++) {
+		if (miro[i][0] == '.' || miro[i][0] == 'J') {
+			if (jihunVisited[i][0] && (jihunDist[i][0] < fireDist[i][0] || !fireVisited[i][0]) && (result > jihunDist[i][0])) {
+				result = jihunDist[i][0];
+			}
+		}
+		if (miro[i][C - 1] == '.' || miro[i][C - 1] == 'J') {
+			if (jihunVisited[i][C - 1] && (jihunDist[i][C - 1] < fireDist[i][C - 1] || !fireVisited[i][C - 1]) && (result > jihunDist[i][C - 1])) {
+				result = jihunDist[i][C - 1];
+			}
+		}
+	}
+
+	for (int i = 0; i < C; i++) {
+		if (miro[0][i] == '.' || miro[0][i] == 'J') {
+			if (jihunVisited[0][i] && (jihunDist[0][i] < fireDist[0][i] || !fireVisited[0][i]) && (result > jihunDist[0][i])) {
+				result = jihunDist[0][i];
+			}
+		}
+		if (miro[R - 1][i] == '.' || miro[R - 1][i] == 'J') {
+			if (jihunVisited[R - 1][i] && (jihunDist[R - 1][i] < fireDist[R - 1][i] || !fireVisited[R - 1][i]) && (result > jihunDist[R - 1][i])) {
+				result = jihunDist[R - 1][i];
+			}
+		}
+	}
+
+	return result;
 }
 
 int main() {
@@ -94,39 +124,8 @@ int main() {
 	}
 	jihunBfs();
 
-	// 미로 가장자리의 불, 지훈 시간 비교
-	for (int i = 0; i < R; i++) {
-		if (miro[i][0] == '.' || miro[i][0] =='J') {
-			if (jihunVisited[i][0] && (jihunDist[i][0] < fireDist[i][0] || !fireVisited[i][0]) && (result > jihunDist[i][0])) {
-				result = jihunDist[i][0];
-			}
-		}
-	}
-
-	for (int i = 0; i < C; i++) {
-		if (miro[0][i] == '.' || miro[0][i] == 'J') {
-			if (jihunVisited[0][i] && (jihunDist[0][i] < fireDist[0][i] || !fireVisited[0][i]) && (result > jihunDist[0][i])) {
-				result = jihunDist[0][i];
-			}
-		}
-	}
-
-	for (int i = 0; i < R; i++) {
-		if (miro[i][C - 1] == '.' || miro[i][C-1] == 'J') {
-			if (jihunVisited[i][C-1] && (jihunDist[i][C - 1] < fireDist[i][C - 1] || !fireVisited[i][C - 1]) && (result > jihunDist[i][C - 1])) {
-				result = jihunDist[i][C - 1];
-			}
-		}
-	}
-
-	for (int i = 0; i < C; i++) {
-		if (miro[R - 1][i] == '.' || miro[R-1][i] == 'J') {
-			if (jihunVisited[R-1][i] && (jihunDist[R - 1][i] < fireDist[R - 1][i] || !fireVisited[R - 1][i]) && (result > jihunDist[R - 1][i])) {
-				result = jihunDist[R - 1][i];
-			}
-		}
-	}
-
+	// 미로 가장자리의 불, 지훈 시간 비교하여 지훈 탈출 가능한지 구하기
+	int result = solveResult();
 	if (result == 999999999) {
 		cout << "IMPOSSIBLE";
 	}
