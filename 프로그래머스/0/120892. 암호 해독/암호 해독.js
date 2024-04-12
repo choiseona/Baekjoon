@@ -1,3 +1,3 @@
 function solution(cipher, code) {
-   return [...cipher].map((word,index) => index % code === code - 1 ? word : "").join("");
+   return [...cipher].filter((word,index) => (index + 1) % code === 0 ? word : "").join("");
 }
