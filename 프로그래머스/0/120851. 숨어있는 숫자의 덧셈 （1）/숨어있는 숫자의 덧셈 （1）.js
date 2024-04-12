@@ -1,3 +1,3 @@
 function solution(my_string) {
-    return [...my_string.match(/\d/g)].reduce((pre,cur) => pre + Number(cur),0);
+    return [...my_string.match(/[0-9]/g)].reduce((pre,cur) => pre + Number(cur),0);
 }
