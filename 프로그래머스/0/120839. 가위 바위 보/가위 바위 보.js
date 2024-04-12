@@ -1,13 +1,10 @@
 function solution(rsp) {
-    const test = (item) => {
-        if(item === "2")
-            return "0";
-        else if(item === "0")
-            return "5";
-        else if(item === "5")
-            return "2";
+    const winner = {
+        2:0,
+        0:5,
+        5:2
     }
     
-    return [...rsp].map((item) => test(item)).join("");
+    return [...rsp].map((item) => winner[item]).join("");
     
 }
