@@ -1,5 +1,4 @@
 function solution(sides) {
-    const sortedSides = [...sides].sort((a,b) => a-b);
-    const longestLength = sortedSides[sortedSides.length-1];
-    return longestLength < sortedSides.reduce((pre,cur) => pre + cur, -1*longestLength) ? 1 : 2 ;
+    const [num1,num2,num3] = [...sides].sort((a,b) => a-b);
+    return num3 < num1 + num2 ? 1 : 2 ;
 }
