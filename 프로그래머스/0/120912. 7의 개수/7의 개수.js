@@ -1,3 +1,3 @@
 function solution(array) {
-    return [...array].reduce((prev,cur) => prev+String(cur),'').split(7).length-1
+    return array.join('').split('7').length-1;
 }
