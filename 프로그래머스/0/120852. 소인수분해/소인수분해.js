@@ -1,16 +1,12 @@
 function solution(n) {
-    const answer= [];
+    const answer= new Set();
     let number = n;
     
     for(let i=2; i<=n; i++) {
-        let flag = 0;
         while(number % i === 0){
             number /= i;
-            flag = 1;
-        }
-        if(flag === 1) {
-            answer.push(i);
+            answer.add(i)
         }
     }
-    return answer;
+    return [...answer];
 }
