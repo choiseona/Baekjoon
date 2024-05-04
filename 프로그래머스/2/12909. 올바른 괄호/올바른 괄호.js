@@ -1,18 +1,10 @@
 function solution(s){
     let count = 0;
-    let answer = true;
     
-    for(let i=0; i<s.length; i++) {
-         if (s[i] === ')' && !(count > 0))  {
-            answer = false;
-         }
-         
-         else {
-             (s[i] === '(') && count++;
-             (s[i] === ')') && count--;
-         }     
+    for(let e of s) {
+        count += (e === '(') ? 1 : -1;
+        if(count < 0) return false;   
      }
     
-    answer =  count === 0 && answer===true ?  true : false;
-    return answer;
+    return count === 0;
 }
