@@ -14,7 +14,7 @@ function solution(jobs) {
             queue.push(task);
         }
 
-                // 큐에 없으면 job에서 하나 꺼내서 실행 
+        // 큐에 없으면 현재 시각 + 1
         if(queue.length === 0) {
             currentTime++;
         }
