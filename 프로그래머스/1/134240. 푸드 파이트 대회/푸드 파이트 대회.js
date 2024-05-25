@@ -5,10 +5,6 @@ function solution(food) {
     for(let i=1; i<food.length; i++) {
         answer += i.toString().repeat(Math.floor(food[i]/2));
     }
-    const reversed = [...answer].reverse().join("");
     
-    answer += 0;
-    answer += reversed;
-    
-    return answer;
+    return answer += '0' + [...answer].reverse().join("")
 }
