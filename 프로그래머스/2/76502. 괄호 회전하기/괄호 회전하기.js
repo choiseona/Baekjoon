@@ -7,9 +7,9 @@ function solution(s) {
     const isValidate = () => {
         const stack = [];
         
-        for (let char of s) {
-            if (char in bracket) stack.push(bracket[char]);
-            else if (stack.pop() !== char) return false;
+        for (let key of s) {
+            if (key in bracket) stack.push(bracket[key]);
+            else if (stack.pop() !== key) return false;
         }
         
         return stack.length === 0;
