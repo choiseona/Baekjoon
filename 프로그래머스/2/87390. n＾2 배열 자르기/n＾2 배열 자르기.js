@@ -4,8 +4,7 @@ function solution(n, left, right) {
     for(let i=left+1; i<=right+1; i++) {
         const x = Math.ceil(i/n);
         const y = i - n*(x-1);
-        const bigger = x < y ? y : x;
-        answer.push(bigger)
+        answer.push(Math.max(x,y))
     }
     
     return answer;
