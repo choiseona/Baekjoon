@@ -5,30 +5,24 @@ function solution(cacheSize, cities) {
     let cache = [];
     let answer = 0;
     
+    if(cacheSize === 0) return 5 * cities.length;
+    
     cities.forEach((city) => {
         const cachedIndex = cache.findIndex((cachedCity) => cachedCity.toLowerCase() === city.toLowerCase());
         // cache hit
         if(cachedIndex > -1){
             answer++;
-            cache = [...cache.slice(0,cachedIndex), ...cache.slice(cachedIndex+1),cache[cachedIndex]];
+            cache.splice(cachedIndex,1);
         }
         
         // cache miss
-        else if(cacheSize === 0) {
+        else {
+            cache.length >= cacheSize ? cache.shift() : null;
             answer += 5;
-        }
-        
-        else if(cache.length < cacheSize){
-            answer += 5;
-            cache.push(city);
-        }
-        
-        else if(cache.length === cacheSize){
-            answer += 5;
-            cache.shift();
-            cache.push(city)
-            
-        }         
+    
+        }  
+
+        cache.push(city);
     })
     
     return answer;
