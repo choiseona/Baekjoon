@@ -12,8 +12,7 @@ function solution(targets) {
     // endX기준 오름차순 정렬
     targets = targets.sort((a,b) => a[1] - b[1]);
         
-    // 겹치는 부분 있으면 겹치는 부분으로 개구간 새로 설정
-    // 겹치는 부분 없으면 count+1
+    // 겹치는 부분 없으면 개구간 새로 설정하고 answer++
     for(const [startX, endX] of targets) {
         if(startX >= end) {
             answer++;
