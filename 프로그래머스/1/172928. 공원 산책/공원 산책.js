@@ -1,7 +1,4 @@
 function solution(park, routes) {
-    // 길: 'O', 장애물: 'X', 현재 위치: "S"
-    // 공원 벗어나거나 장애물 있으면 해당 명령 무시하고 다음 명령 수행
-    
     const road = [];
     let dogX, dogY; 
     
@@ -15,27 +12,18 @@ function solution(park, routes) {
     
     // 명령 수행
     // 공원 벗어나거나 장애물 있으면 해당 명령 무시하고 다음 명령 수행
+    const isExistHurdle = ([arriveY, arriveX]) => {
+        let isHurdle = false;
+        const startX = Math.min(dogX, arriveX), startY = Math.min(dogY, arriveY), endX = Math.max(dogX, arriveX), endY =Math.max(dogY, arriveY);
+        for (let i = startY; i <= endY; i++) {
+            for (let j = startX; j <= endX; j++) {
+                if (road[i][j] === "X") return true;
+            }
+        }
+    }
     const roadYLength = road.length;
     const roadXLength = road[0].length;
     const dir = {"E":[0,1], "W":[0,-1], "N":[-1,0], "S":[1,0]};
-    
-const isExistHurdle = ([arriveY, arriveX]) => {
-    let isHurdle = false;
-    const startX = Math.min(dogX, arriveX);
-    const startY = Math.min(dogY, arriveY);
-    const endX = Math.max(dogX, arriveX);
-    const endY = Math.max(dogY, arriveY);
-    for (let i = startY; i <= endY; i++) {
-        for (let j = startX; j <= endX; j++) {
-            if (road[i][j] === "X") {
-                isHurdle = true;
-                break;
-            }
-        }
-        if (isHurdle) break;
-    }
-    return isHurdle;
-}
     
     routes.forEach((route) => {
         let [direction, count] = route.split(" "); count = parseInt(count);
