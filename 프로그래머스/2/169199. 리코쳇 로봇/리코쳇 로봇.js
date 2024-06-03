@@ -16,8 +16,6 @@ function solution(board) {
     })
     
     // 시작 위치에서 목표 위치까지의 최소 이동 횟수 구하기
-    const xDirection = [-1,1,0,0], yDirection = [0,0,-1,1];
-    
     const BFS = (startY, startX) => {
         const visited = Array.from({length:board.length}, () => Array(board[0].length).fill(false))
         const queue = [];
