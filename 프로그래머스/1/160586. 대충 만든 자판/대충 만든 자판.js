@@ -3,31 +3,18 @@ function solution(keymap, targets) {
     // 문자열을 작성하기 위한 키 최소 누름 횟수 반환  
     // 불가능하면 -1 반환
     
-    const map = [];
+    const map = {};
     
-    keymap.forEach((alphabets) => {
+    for(let alphabets of keymap) {
         [...alphabets].forEach((alphabet, index) => {
-            map[alphabet] = Math.min(map[alphabet] || Infinity, index+1);
+            map[alphabet] = Math.min(map[alphabet] || Infinity, index + 1)
         })
-    })
-    
+    }
+
     let answer = [];
-    targets.forEach((alphabets) => {
-        let isFail = false;
-        let sum = 0;
-        
-        for(let key of alphabets) {
-            if(!map[key]) {
-                isFail = true;
-                break;
-            } else {
-                sum += map[key];
-            }
-        }
-        
-        if(isFail) answer.push(-1);
-        else answer.push(sum)
-    })
+    for(let alphabets of targets) {
+        answer.push([...alphabets].reduce((cul,cur) => cul + map[cur],0) || -1)
+    }
     
     return answer;
 }
