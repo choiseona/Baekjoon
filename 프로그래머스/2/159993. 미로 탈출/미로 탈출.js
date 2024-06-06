@@ -16,20 +16,19 @@ function solution(maps) {
         })
     })
     
+    // 최소 시간 구하기
     const [startY, startX] = start, [leverY, leverX] = lever, [exitY, exitX] = exit
     const XDirection = [-1,1,0,0], YDirection = [0,0,-1,1];
     const mapHeight = maps.length, mapWidth = maps[0].length;
-    
-    // 레버까지 이동하는데 최소시간 구하기
-    const getMinTimeToLever = () => {
-        let minTimeToLever = Infinity;
+    const BFS = ([startY, startX], [endY, endX]) => {
+        let minTime = Infinity;
         const visited = Array.from({length:mapHeight}, () => Array.from({length:mapWidth}, () => false))
         const queue = [];
     
         queue.push({y:startY, x:startX, time:0});
         while(queue.length) {
             const {y,x,time} = queue.shift();
-            if(y === leverY && x === leverX) minTimeToLever = Math.min(minTimeToLever, time);
+            if(y === endY && x === endX) minTime = Math.min(minTime, time);
         
             for(let i=0; i<4; i++) {
                 const newY = y + YDirection[i], newX = x + XDirection[i];
@@ -39,37 +38,14 @@ function solution(maps) {
                 visited[newY][newX] = true
             }
         }
-        return minTimeToLever;
+        return minTime;
     }
     
-    const getMinTimeToExit = () => {
-        let minTimeToExit = Infinity;
-        const visited = Array.from({length:mapHeight}, () => Array.from({length:mapWidth}, () => false))
-        const queue = [];
-        
-        queue.push({y:leverY, x:leverX, time:0});
-        while(queue.length) {
-            const {y,x,time} = queue.shift();
-            if(y === exitY && x === exitX) minTimeToExit = Math.min(minTimeToExit, time);
-        
-            for(let i=0; i<4; i++) {
-                const newY = y + YDirection[i], newX = x + XDirection[i];
-                if(newY < 0 || newX < 0 || newY >= mapHeight || newX >= mapWidth) continue;
-                if(visited[newY][newX] || maps[newY][newX] === "X") continue;
-                queue.push({y:newY, x:newX, time:time+1});
-                visited[newY][newX] = true
-            }
-        }
-        return minTimeToExit;
-    }
-    
-    const minTimeToLever = getMinTimeToLever();
+    const minTimeToLever = BFS([startY, startX], [leverY, leverX]);
     if(minTimeToLever === Infinity) return -1;
     
-    const minTimeToExit = getMinTimeToExit();
+    const minTimeToExit = BFS([leverY, leverX], [exitY, exitX]);
     if(minTimeToExit === Infinity) return -1;
     
-    answer = minTimeToLever + minTimeToExit;
-
-    return answer;
+    return  minTimeToLever + minTimeToExit;;
 }
