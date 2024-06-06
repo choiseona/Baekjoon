@@ -2,9 +2,7 @@ function solution(maps) {
     // 레버 당겨야 출구문 열 수 있음
     // maps: 미로
     // 탈출 최소 시간 반환
-    
-    let answer = 0;
-    
+        
     // 시작점, 레머위치, 출구위치 구하기
     let start = [], lever = [], exit = [];
     maps.forEach((row,rowIndex) => {
