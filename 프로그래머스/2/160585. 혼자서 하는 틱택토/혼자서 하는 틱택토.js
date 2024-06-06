@@ -16,7 +16,6 @@ function solution(board) {
         return false;
     }
     
-    // O와 X 개수 계산
     // X가 더 많거나 O와 X 개수 차이가 1보다 크면 실수한 것임
     let OCount = 0, XCount = 0;
     for(const line of board) {
@@ -27,16 +26,15 @@ function solution(board) {
     }
     if(OCount < XCount || OCount - XCount > 1) return 0;
 
-
-    // O와 X가 모두 승리한 경우가 있는지 확인
     // 둘 다 승리한 경우는 실수한 것임
     const OSuccess = checkWin("O");
     const XSuccess = checkWin("X");
     if(OSuccess === true && XSuccess === true) return 0;
     
-    // X가 성공했는데 O를 놓는 경우 실수한 것임
-    // 즉, X가 성공했는데 O가 X의 개수보다 하나 많으면 실수한 것임
+    // O가 선공인 상황에서 X가 성공했는데 O가 X개수보다 많으면 실수한것임
+    // O가 성공했는데 X가 O의 개수와 같다면 실수한것임
     if(XSuccess === true && OCount > XCount) return 0;
     if(OSuccess === true && OCount === XCount) return 0;
+    
     return 1;
 }
