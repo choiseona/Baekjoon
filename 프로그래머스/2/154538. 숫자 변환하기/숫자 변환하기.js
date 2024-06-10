@@ -1,5 +1,4 @@
 function solution(x, y, n) {
-    let minCount = Infinity;
     
     const BFS = (startNumber) => {
         const queue = [];
@@ -10,7 +9,7 @@ function solution(x, y, n) {
         
         while(queue.length) {
             const {number, count} = queue.shift();
-            if(number === x) minCount = Math.min(count, minCount)
+            if(number === x) return count;
             
             const numberMinusN = number - n;
             if(numberMinusN >= x && !visited[numberMinusN]) {
@@ -31,9 +30,9 @@ function solution(x, y, n) {
             } 
             
         }
-        return minCount;
+        return -1;
     }
     
-    const answer = BFS(y);
-    return answer === Infinity ? -1 : answer;
+  
+    return BFS(y);
 }
