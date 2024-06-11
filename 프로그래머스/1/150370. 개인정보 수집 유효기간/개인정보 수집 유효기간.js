@@ -1,29 +1,20 @@
 function solution(today, terms, privacies) {
+    const [todayYear, todayMonth, todayDay] = today.split(".").map(Number);
+    const todayNumber = todayYear * 12 * 28 + todayMonth * 28 + todayDay;
+    
     const termsMap = {};
-    const [todayYear, todayMonth, todayDay] = today.split(".");
     terms.forEach((item) => {
         const [type, validate] = item.split(" ");
-        termsMap[type] = parseInt(validate);
+        termsMap[type] = Number(validate);
     });
     
     let answer = [];
-    for (let i = 0; i < privacies.length; i++) {
-        const privacy = privacies[i];
-        const [start, type] = privacy.split(" ");
-        const [startYear, startMonth, startDay] = start.split(".").map(Number);
-        let endMonth = (startMonth + termsMap[type]) % 12;
-        let endYear = startYear + Math.floor((startMonth + termsMap[type]) / 12);
-        if (endMonth === 0) {
-            endMonth = 12;
-            endYear -= 1;
-        }
-        const endDay = startDay.toString().padStart(2, '0');
-        const todayNumber = Number(todayYear + todayMonth + todayDay);
-        const endNumber = Number(String(endYear) + String(endMonth).padStart(2, '0') + endDay);
-        
-        if (todayNumber < endNumber) continue;
-        answer.push(i + 1);
-    }
-    
+    privacies.forEach((item,index) => {
+        const [date, type] = item.split(" ");
+        const [startYear, startMonth, startDay] = date.split(".").map(Number);
+        const endNumber = startYear * 12 * 28 + (startMonth + termsMap[type]) * 28 + startDay;
+        if(todayNumber >= endNumber) answer.push(index+1)
+    })
+
     return answer;
 }
