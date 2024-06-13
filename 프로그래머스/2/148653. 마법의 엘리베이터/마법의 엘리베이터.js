@@ -4,9 +4,6 @@ function solution(storey) {
     // storey: 민수와 마법의 엘리베이터가 있는 층
     // 0층으로 가기 위해 필요한 마법의 돌의 최소값 반환
     
-    // 2554 2550(4) 2500(5) 2000(5) 0(2)
-    // 2556
-    
     let answer = 0;
     while(storey > 0) {
         const lastNumber = storey % 10;
@@ -30,3 +27,13 @@ function solution(storey) {
     }
     return answer;
 }
+
+// 다른 사람 풀이.. 이런 생각은 어떻게 하는걸까
+/*
+function solution(storey) {
+    if (storey < 5) return storey;
+    const r = storey % 10;
+    const m = (storey - r) / 10;
+    return Math.min(r + solution(m), 10 - r + solution(m + 1));
+}
+*/
