@@ -42,23 +42,23 @@ class MinHeap {
         const min = this.heap[0];
         this.heap[0] = this.heap.pop();
 
-        let index = 0;
-        while (index * 2 + 1 < this.heap.length) {
-          let left = index * 2 + 1, right = index * 2 + 2, next = index;
+        let curIndex = 0, leftIndex = 1, rightIndex = 2;
+        while (leftIndex < this.heap.length) {
+          let leftIndex = curIndex * 2 + 1, rightIndex = curIndex * 2 + 2, nextIndex = curIndex;
           
-          if (this.heap[next] > this.heap[left]) {
-              next = left;
+          if (this.heap[nextIndex] > this.heap[leftIndex]) {
+              nextIndex = leftIndex;
           }
           
-          if (right < this.heap.length && this.heap[next] > this.heap[right]) {
-              next = right;
+          if (leftIndex < this.heap.length && this.heap[nextIndex] > this.heap[rightIndex]) {
+              nextIndex = rightIndex;
           }
           
-          if (next === index) {
+          if (curIndex === nextIndex) {
               break;
           }
-          this.swap(index,next);
-          index = next;
+          this.swap(curIndex,nextIndex);
+          curIndex = nextIndex;
         }
             
         return min;
