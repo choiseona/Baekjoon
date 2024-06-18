@@ -18,7 +18,6 @@ function getMaxDivisor(arrayDivisor, array) {
 }
 
 function getDivisor(array) {
-    array = array.sort((a,b) => a-b);
     const answer = [];
     for(let i=1; i<=array[0]; i++) {
         if(array[0] % i !== 0) continue;
