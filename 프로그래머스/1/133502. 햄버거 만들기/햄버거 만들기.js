@@ -1,11 +1,15 @@
+
 function solution(ingredient) {
+    const stack = [];
     let count = 0;
-    
-    for(let i=0; i<ingredient.length; i++) {
-        if(ingredient.slice(i,i+4).join("") !== "1231") continue;
+    for (const item of ingredient) {
+        stack.push(item);
+        if (stack[stack.length-1] !== 1) continue;
+        if (stack[stack.length-2] !== 3) continue; 
+        if (stack[stack.length-3] !== 2) continue;
+        if (stack[stack.length-4] !== 1) continue;
         count++;
-        ingredient.splice(i,4);
-        i-=3;
+        stack.splice(-4);
     }
     
     return count;
